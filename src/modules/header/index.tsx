@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import AuthService from "../../services/auth";
 import useStyles from "./style";
+import Login from "../login";
 
 function a11yProps(index: number) {
   return {
@@ -16,6 +17,7 @@ function Header() {
   const isAuthenticated = !!AuthService.getToken();
   const [value, setValue] = useState(0);
   const [authenticated, setAuthenticated] = useState(isAuthenticated);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     if (authenticated) {
@@ -35,15 +37,12 @@ function Header() {
     await setAuthenticated(false);
   };
 
-  const handleLogin = async () => {
-    const token = await AuthService.login("user", "123456");
-    if (token) setAuthenticated(true);
-  };
-
   const submitLoginLogout = () => {
     if (isAuthenticated) handleLogout();
-    else handleLogin();
+    else setOpenModal(true);
   };
+
+  const handleCloseModal = () => setOpenModal(false)
 
   const classes = useStyles();
   return (
@@ -79,6 +78,7 @@ function Header() {
         />
         {authenticated ? <p>Logout</p> : <p>Sign in</p>}
       </button>
+      {openModal && <Login open={openModal} handleClose={handleCloseModal} setAuthenticated={setAuthenticated} />}
     </header>
   );
 }

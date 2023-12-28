@@ -5,12 +5,12 @@ const useStyles = makeStyles(() => ({
         "& .MuiFormControl-root": {
             backgroundColor: "#1D1E1F !important",
             borderRadius: 8,
+            width: "50%"
         },
         "& .MuiOutlinedInput-input": {
             color: "#B5B7B7",
         },
         "& .Mui-focused": {
-            
             outline: 0,
         },
         "& fieldset:focus-visible": {
@@ -24,7 +24,12 @@ const useStyles = makeStyles(() => ({
         },
         "& .MuiInputBase-input:focus-visible": {
             outline: 0,
-        }
+        },
+        '@media(max-width: 425px)': {
+            "& .MuiFormControl-root": {
+                width: "90%"
+            },
+        },
     }
 }))
 export default useStyles

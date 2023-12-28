@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
+import _debounce from 'lodash/debounce';
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -35,20 +36,18 @@ const AllCharacters = () => {
     setSelectedUrl("");
   };
 
-  const handleSearchChange = (value: string) => {
-    setTimeout(() => {
-      setSerachInput(value);
-    }, 1000);
-  };
+  const handleSearchChange = _debounce((value) => {
+    setSerachInput(value);
+  }, 500);
 
   if (error) return <>Something went Wrong!</>;
   return (
     <Box className={classes.allCharactersContainer}>
       <CircularLoading Open={isLoading} />
       <Grid container spacing={1} direction="row" justifyContent="center">
-        <FormControl sx={{ width: "50%", marginBottom: "50px" }}>
+        <FormControl sx={{ marginBottom: "50px" }}>
           <OutlinedInput
-            placeholder="Search about Star Wars characters ..."
+            placeholder="Search characters ..."
             endAdornment={
               <InputAdornment position="end">
                 <img src={SearchIcon} alt="SearchIcon" />

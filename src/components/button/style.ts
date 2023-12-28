@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
             fontFamily: "Rubik",
             color: "#FFFFFF",
             border: "1px solid #fade4b",
-            borderRadius: 20,
+            borderRadius: 8,
             "&:hover": {
                 border: "1px solid #FFFFFF",
             }
