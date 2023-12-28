@@ -30,7 +30,12 @@ const useStyles = makeStyles(() => ({
         "& .MuiTabs-indicator": {
             background: "#FFFFFF",
             boxShadow: "0px 0px 4px 1px #FADE4B",
-        }
+        },
+        '@media(max-width: 770px)': {
+            "& .MuiTab-root": {
+                display: "none",
+            },
+        },
     }
 }))
 export default useStyles
