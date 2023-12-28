@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles'
 const useStyles = makeStyles(() => ({
     HeaderContainer: {
+        position: "relative",
         height: 150,
         borderBottom: "1px #48494a solid",
         margin: "auto",
@@ -36,6 +37,31 @@ const useStyles = makeStyles(() => ({
                 display: "none",
             },
         },
+    },
+    signInButton: {
+        position: "absolute",
+        right: 30,
+        top: 20,
+        backgroundColor: "transparent",
+        border: 0,
+        display: "flex",
+        alignItems: "center",
+        fontFamily: "Rubik",
+        textTransform: "uppercase",
+        fontSize: "1rem",
+        lineHeight: "1.5rem",
+        fontWeight: 500,
+        color: "#fff",
+        cursor: "pointer",
+        transition: "all 0.3s ease",
+        "& p": {
+            margin: 0,
+            marginLeft: 10,
+        },
+        "&:hover": {
+            transition: "all 0.3s ease",
+            transform: "scale(1.1)",
+        }
     }
 }))
 export default useStyles
