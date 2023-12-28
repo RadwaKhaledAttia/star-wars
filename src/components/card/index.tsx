@@ -7,14 +7,15 @@ import { CardActionArea } from "@mui/material";
 import useStyles from "./style";
 
 interface Props {
-    character: any
+    character: any;
+    handleClick: (url: string) => void
 }
 
-const CardComponent:FC<Props> = ({ character }) => {
+const CardComponent:FC<Props> = ({ character, handleClick }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.cardContainer}>
+    <Card className={classes.cardContainer} onClick={() => handleClick(character.url)}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -25,6 +26,9 @@ const CardComponent:FC<Props> = ({ character }) => {
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {character.name}
+          </Typography>
+          <Typography variant="h6" component="div">
+            Click to see more details
           </Typography>
         </CardContent>
       </CardActionArea>
