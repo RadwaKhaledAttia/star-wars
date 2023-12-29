@@ -17,7 +17,7 @@ import CharacterDetails from "../details";
 import SearchIcon from "../../../assets/images/search.png";
 import FilterIcon from "../../../assets/images/filter.png";
 import CharactersFilterations from "./filteration";
-import { Character } from "../../../interfaces/charcter"
+import { Character } from "../../../interfaces/charcter";
 
 const AllCharacters = () => {
   const classes = useStyles();
@@ -45,6 +45,7 @@ const AllCharacters = () => {
   // So, there's no handling to pagination
   useEffect(() => {
     const { films, species } = filters;
+    console.log("first", filters);
     if ((films.length > 0 || species.length > 0) && !isLoading) {
       const allCharacters = [...data.results];
       const filteredCharacters: Character[] = [];
@@ -57,20 +58,22 @@ const AllCharacters = () => {
             filteredCharacters.push(character);
         });
       } else if (films.length === 0 && species.length > 0) {
+        const allCharacters = [...data.results];
         allCharacters.forEach((character) => {
-          const matchesSpeciesIncludes = character.species.filter((item: string) =>
-            species.some((element) => element === item)
+          const matchesSpeciesIncludes = character.species.filter(
+            (item: string) => species.some((element) => element === item)
           );
           if (matchesSpeciesIncludes.length === species.length)
             filteredCharacters.push(character);
         });
       } else if (films.length > 0 && species.length > 0) {
+        const allCharacters = [...data.results];
         allCharacters.forEach((character) => {
           const matchesFilmsIncludes = character.films.filter((item: string) =>
             films.some((element) => element === item)
           );
-          const matchesSpeciesIncludes = character.species.filter((item: string) =>
-            species.some((element) => element === item)
+          const matchesSpeciesIncludes = character.species.filter(
+            (item: string) => species.some((element) => element === item)
           );
           if (
             matchesSpeciesIncludes.length === species.length &&
@@ -80,6 +83,8 @@ const AllCharacters = () => {
         });
       }
       setCharacters(filteredCharacters);
+    } else if (films.length === 0 && species.length === 0 && !isLoading) {
+      setCharacters([...data.results]);
     }
   }, [filters, isLoading]);
 
