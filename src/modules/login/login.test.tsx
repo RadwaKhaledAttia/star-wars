@@ -5,7 +5,7 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import Login from './index';
 import AuthService from '../../services/auth';
 
-jest.mock('path-to-auth-service', () => ({
+jest.mock('../../services/auth', () => ({
   login: jest.fn(),
 }));
 
