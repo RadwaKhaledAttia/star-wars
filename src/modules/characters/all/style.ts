@@ -30,6 +30,20 @@ const useStyles = makeStyles(() => ({
                 width: "90%"
             },
         },
+    },
+    filterButton: {
+        maxHeight: 56,
+        minWidth: 56,
+        marginLeft: 20,
+        backgroundColor: "transparent",
+        border: "1px solid #B5B7B7",
+        borderRadius: 8,
+        cursor: "pointer",
+        transition: "all 0.3s ease",
+        "&:hover": {
+            transition: "all 0.3s ease",
+            transform: "scale(1.1)",
+        }
     }
 }))
 export default useStyles
