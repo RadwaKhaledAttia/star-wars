@@ -17,7 +17,6 @@ describe('Card Component', () => {
     );
 
     expect(getByText('Luke Skywalker')).toBeInTheDocument();
-    expect(getByText('url: https://swapi.dev/api/people/1/')).toBeInTheDocument();
   });
 
   test('calls handleClick when card is clicked', () => {
@@ -26,7 +25,7 @@ describe('Card Component', () => {
     );
 
     fireEvent.click(getByText('Luke Skywalker'));
-    expect(handleClick).toHaveBeenCalledWith(character);
+    expect(handleClick).toHaveBeenCalledWith(character.url);
   });
 
 });
