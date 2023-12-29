@@ -10,6 +10,10 @@ const useStyles = makeStyles(() => ({
             "&:hover": {
                 border: "1px solid #FFFFFF",
             }
+        },
+        "& .MuiButton-root.Mui-disabled" : {
+            color: "#B5B7B7",
+            border: "1px solid #333536",
         }
     }
 }))

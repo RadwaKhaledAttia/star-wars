@@ -11,7 +11,7 @@ interface Props {
 
 const PaginationButtons: FC<Props> = ({ count, page, changePage }) => {
   const classes = useStyles();
-  const handleChange = (event: any, page: number) => {
+  const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
     event.preventDefault();
     changePage(page);
   };

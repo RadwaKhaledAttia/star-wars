@@ -6,8 +6,13 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import useStyles from "./style";
 
+interface Character {
+  name: string;
+  url: string;
+}
+
 interface Props {
-    character: any;
+    character: Character;
     handleClick: (url: string) => void
 }
 

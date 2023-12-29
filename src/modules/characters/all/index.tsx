@@ -17,10 +17,11 @@ import CharacterDetails from "../details";
 import SearchIcon from "../../../assets/images/search.png";
 import FilterIcon from "../../../assets/images/filter.png";
 import CharactersFilterations from "./filteration";
+import { Character } from "../../../interfaces/charcter"
 
 const AllCharacters = () => {
   const classes = useStyles();
-  const [characters, setCharacters] = useState<any>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [page, setPage] = useState(1);
   const [openModal, setOpenModal] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
@@ -46,10 +47,10 @@ const AllCharacters = () => {
     const { films, species } = filters;
     if ((films.length > 0 || species.length > 0) && !isLoading) {
       const allCharacters = [...data.results];
-      const filteredCharacters: any = [];
+      const filteredCharacters: Character[] = [];
       if (films.length > 0 && species.length === 0) {
         allCharacters.forEach((character) => {
-          const matchesFilmsIncludes = character.films.filter((item: any) =>
+          const matchesFilmsIncludes = character.films.filter((item: string) =>
             films.some((element) => element === item)
           );
           if (matchesFilmsIncludes.length === films.length)
@@ -57,7 +58,7 @@ const AllCharacters = () => {
         });
       } else if (films.length === 0 && species.length > 0) {
         allCharacters.forEach((character) => {
-          const matchesSpeciesIncludes = character.species.filter((item: any) =>
+          const matchesSpeciesIncludes = character.species.filter((item: string) =>
             species.some((element) => element === item)
           );
           if (matchesSpeciesIncludes.length === species.length)
@@ -65,10 +66,10 @@ const AllCharacters = () => {
         });
       } else if (films.length > 0 && species.length > 0) {
         allCharacters.forEach((character) => {
-          const matchesFilmsIncludes = character.films.filter((item: any) =>
+          const matchesFilmsIncludes = character.films.filter((item: string) =>
             films.some((element) => element === item)
           );
-          const matchesSpeciesIncludes = character.species.filter((item: any) =>
+          const matchesSpeciesIncludes = character.species.filter((item: string) =>
             species.some((element) => element === item)
           );
           if (
@@ -128,7 +129,7 @@ const AllCharacters = () => {
               No characters found
             </Typography>
           )}
-          {characters.map((people: any) => (
+          {characters.map((people: Character) => (
             <Grid key={people.url} item lg={3} md={4} sm={6} xs={12}>
               <CardComponent character={people} handleClick={showDetails} />
             </Grid>

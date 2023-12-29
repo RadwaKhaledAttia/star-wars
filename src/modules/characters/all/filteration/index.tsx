@@ -14,6 +14,8 @@ import CircularLoading from "../../../../components/CircularLoading";
 import CloseIcon from "../../../../assets/images/close.png";
 import { getAllFilms } from "../../../../services/films";
 import { getAllSpecies } from "../../../../services/species";
+import { Film } from "../../../../interfaces/film"
+import { Species } from "../../../../interfaces/species"
 import useStyles from "./style";
 
 const style = {
@@ -106,7 +108,7 @@ const CharactersFilterations: FC<Props> = ({
                 By films
               </Typography>
               <Grid container spacing={1}>
-                {films?.results.map((film: any) => (
+                {films?.results.map((film: Film) => (
                   <Grid item lg={6} key={film.url}>
                     <FormControlLabel
                       control={
@@ -136,7 +138,7 @@ const CharactersFilterations: FC<Props> = ({
                 By species
               </Typography>
               <Grid container spacing={1}>
-                {species?.results.map((item: any) => (
+                {species?.results.map((item: Species) => (
                   <Grid item lg={6} key={item.url}>
                     <FormControlLabel
                       control={

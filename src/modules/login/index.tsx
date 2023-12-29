@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -24,6 +24,11 @@ const style = {
   p: 4,
 };
 
+interface FormData {
+  username: string;
+  password: string;
+}
+
 interface Props {
   open: boolean;
   handleClose: () => void;
@@ -36,8 +41,8 @@ const Login: FC<Props> = ({ open, handleClose, setAuthenticated }) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm<FormData>();
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
@@ -49,7 +54,9 @@ const Login: FC<Props> = ({ open, handleClose, setAuthenticated }) => {
     else if (showError) setShowError(false);
   }, [errors]);
 
-  const submitLogin = async ({ username, password }: any) => {
+  const submitLogin: SubmitHandler<FormData> = async ({ username, password }) => {
+    // LOGIN BY
+    // username: user, password: 123456
     try {
       const token = await AuthService.login(username, password);
       if (token) await setAuthenticated(true);
@@ -102,7 +109,9 @@ const Login: FC<Props> = ({ open, handleClose, setAuthenticated }) => {
                 {...register("password", { required: true })}
               />
             </FormControl>
-            <ButtonComponent type="submit">Log In</ButtonComponent>
+            <ButtonComponent type="submit" disabled={!isValid}>
+              Log In
+            </ButtonComponent>
           </form>
         </Box>
       </Fade>
