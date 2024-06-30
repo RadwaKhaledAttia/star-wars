@@ -42,10 +42,8 @@ const AllCharacters = () => {
   }, [data]);
 
   // IMPLEMENT FILTER: Implemented the filter as there's no filter in swapi api
-  // So, there's no handling to pagination
   useEffect(() => {
     const { films, species } = filters;
-    console.log("first", filters);
     if ((films.length > 0 || species.length > 0) && !isLoading) {
       const allCharacters = [...data.results];
       const filteredCharacters: Character[] = [];
